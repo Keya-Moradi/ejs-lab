@@ -54,20 +54,23 @@ const RESTAURANT = {
 }
 
 app.get('/', (req, res) => {
-  res.render('home', { restaurant: RESTAURANT });
+  res.render('home.ejs', { restaurant: RESTAURANT });
 });
 
 app.get('/menu', (req, res) => {
-  res.render('menu', { menu: RESTAURANT.menu });
+  res.render('menu.ejs', { menu: RESTAURANT.menu });
 })
 
 app.get('/menu/:category', (req, res) => {
   const category = req.params.category;
   const menuItems = RESTAURANT.menu.filter(item => item.category === category);
   const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1)
-  res.render('category', { menuItems: menuItems, category: capitalizedCategory });
+  res.render('category.ejs', { menuItems: menuItems, category: capitalizedCategory });
 });
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000 baby!');
 });
+
+
+
